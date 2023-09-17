@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form-Wifi</title>
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Main -->
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <header class="header">
+        <h1 class="header-title">ESP Wi-Fi Manager</h1>
+    </header>
+
+    <div class="main">
+        <form action="" method="POST" class="form" id="form-1">
+            <div class="spacer"></div>
+        
+            <div class="form-group">
+              <div class="input-wrap">
+                  <label for="username" class="form-label">User Name</label>
+                  <input id="username" name="username" type="text" placeholder="VD: nguyenducthang15" class="form-control">
+              </div>
+              <span class="form-message"></span>
+            </div>
+        
+            <div class="form-group">
+              <div class="input-wrap">
+                <label for="password" class="form-label">Password</label>
+                <input id="password" name="password" type="password" placeholder="Nhập mật khẩu" class="form-control">
+                </div>
+                <span class="form-message"></span>
+            </div>
+        
+            <div class="form-group">
+              <div class="input-wrap">
+                  <label for="IP" class="form-label">IP Address</label>
+                  <input id="IP" name="IP" type="text" placeholder="VD: 012.345.678" class="form-control">
+              </div>
+              <span class="form-message"></span>
+            </div>
+        
+            <div class="form-group">
+              <div class="input-wrap">
+                  <label for="gateway" class="form-label">Gateway Address</label>
+                  <input id="gateway" name="gateway" type="text" placeholder="VD: 012.345.678" class="form-control">
+              </div>
+              <span class="form-message"></span>
+            </div>
+            
+            <div class="submit">
+              <button class="btn form-submit">Submit</button>
+              <button class="btn">Cancel</button>
+            </div>
+        </form>  
+    </div>
+</body>
+<script src="./main.js"></script>
+<script>
+    Validator({
+        form: '#form-1',
+        formGroup: '.form-group',
+        errorSelector: '.form-message',
+        rules: [
+            Validator.isRequired('#username'),
+            Validator.isUserName('#username'),
+            Validator.isRequired('#password'),
+            Validator.minLength('#password',6),
+            Validator.isRequired('#IP'),
+            Validator.isIP('#IP',"Không phải là một IP Address"),
+            Validator.isRequired('#gateway'),
+            Validator.isIP('#gateway',"Không phải là một Gateway Address"),
+        ],
+        onSubmit: function(data){
+          console.log(data);
+        }
+    });
+</script>
+</html>
